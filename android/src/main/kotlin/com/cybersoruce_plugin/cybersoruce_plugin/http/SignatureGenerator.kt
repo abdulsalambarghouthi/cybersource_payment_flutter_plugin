@@ -27,11 +27,11 @@ class SignatureGenerator(merchantConfig: MerchantConfig) {
         var signatureString = StringBuilder()
 
         signatureString.append("\n")
-        signatureString.append(Constants.HOST.toLowerCase())
+        signatureString.append(Constants.HOST.lowercase())
         signatureString.append(": ")
         signatureString.append(merchantConfig.requestHost)
         signatureString.append("\n")
-        signatureString.append(Constants.DATE.toLowerCase())
+        signatureString.append(Constants.DATE.lowercase())
         signatureString.append(": ")
         signatureString.append(PayloadUtility().getNewDate())
         signatureString.append("\n")
@@ -46,7 +46,7 @@ class SignatureGenerator(merchantConfig: MerchantConfig) {
         //TODO: if condition required
         //if (httpMethod === Constants.POST) {
         if(true) {
-            signatureString.append(Constants.DIGEST.toLowerCase())
+            signatureString.append(Constants.DIGEST.lowercase())
             signatureString.append(": ")
             signatureString.append(PayloadDigest(merchantConfig).getDigest())
             signatureString.append("\n")
@@ -69,7 +69,7 @@ class SignatureGenerator(merchantConfig: MerchantConfig) {
         var requestTarget: String = ""
         when (requestType) {
             //TODO: remove this hardcode
-            Constants.POST -> requestTarget = "POST".toLowerCase() + " " + "/flex/v2/sessions";//Constants.POST.toLowerCase() + Constants.SPACE + merchantConfig.requestTarget
+            Constants.POST -> requestTarget = "POST".lowercase() + " " + "/flex/v2/sessions";//Constants.POST.lowercase() + Constants.SPACE + merchantConfig.requestTarget
         }
 
         return requestTarget
