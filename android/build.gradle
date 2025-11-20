@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:7.0.4' // ✅ Updated for SDK 31+
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -26,11 +26,16 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace 'com.cybersoruce_plugin.cybersoruce_plugin'
-    compileSdkVersion 29
+    compileSdkVersion 31 // ✅ Updated to support android:attr/lStar
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 31 // ✅ Added for consistency
+    }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
@@ -40,20 +45,12 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
-    defaultConfig {
-        minSdkVersion 26
-    }
 }
 
-
 dependencies {
-
     implementation "com.cybersource:flex-api-android-client:1.0.1"
     implementation 'com.squareup.retrofit2:retrofit:2.6.3'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.3'
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
-
 }
